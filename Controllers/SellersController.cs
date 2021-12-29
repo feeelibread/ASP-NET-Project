@@ -45,6 +45,17 @@ namespace SalesWebMvc.Controllers
             return View(objSeller);
         }
 
+        public IActionResult Details(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var objSeller = _sellerService.FindById(id.Value);
+            
+            if(objSeller == null) return NotFound();
+
+            return View(objSeller);
+        }
+
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
